@@ -7,6 +7,7 @@ import Login from "./Components/Login/Login";
 import Registration from "./Components/Registration/Registration";
 import AuthProvider from "./Provider/AuthProvider";
 import Home from "./Components/Home/Home";
+import CreateCommunity from "./Components/CreateCommunity/CreateCommunity";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/posts",
         element: <Home></Home>,
+      },
+      {
+        path: "/createCommunity",
+        element: <CreateCommunity></CreateCommunity>,
       },
     ],
   },
