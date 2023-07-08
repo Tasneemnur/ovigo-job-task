@@ -1,4 +1,6 @@
 import Navbar from "../../shared/Navbar";
+import Communities from "./communities";
+
 
 
 const Home = () => {
@@ -6,6 +8,7 @@ const Home = () => {
   return (
   <>
   <Navbar></Navbar>
+  <Communities></Communities>
   </>
   );
 };
