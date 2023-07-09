@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Title from "../../shared/Title";
 
 const JoinCommunities = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,8 @@ const JoinCommunities = () => {
   }, [user?.email]);
   return (
     <div>
-      <div className="overflow-x-auto">
+        <Title heading="Join Communities" subHeading="These are the communities that you requested to join from the homepage"></Title>
+      <div className="overflow-x-auto mt-16">
         <table className="table text-center">
           {/* head */}
           <thead>

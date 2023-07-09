@@ -1,4 +1,4 @@
-import { updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -27,12 +27,19 @@ const Registration = () => {
       .then((result) => {
         const registerUser = result.user;
         form.reset();
+        sendVerificationEmail(registerUser);
         updateUserData(registerUser, name, photo);
       })
       .catch((error) => {
         console.error(error);
       });
 
+      const sendVerificationEmail = (user) => {
+        sendEmailVerification(user)
+        .then(() => {
+          Swal.fire('Please verify your email address')
+        });
+      }
     const updateUserData = (user, name, photo) => {
       updateProfile(user, {
         displayName: name,

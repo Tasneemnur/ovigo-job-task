@@ -7,9 +7,6 @@ const Community = ({ community }) => {
   const { _id, communityName, communityPicture, admin, adminEmail, adminId } =
     community;
   const { user } = useContext(AuthContext);
-  console.log(user.displayName);
-  //   const navigate = useNavigate();
-  //   const location = useLocation();
   const [click, setClick] = useState(false);
   const handleAddtoCart = (community) => {
     setClick(true);
@@ -45,18 +42,6 @@ const Community = ({ community }) => {
           }
         });
     }
-    // else {
-    //   Swal.fire({
-    //     title: "You have to login first",
-    //     icon: "warning",
-    //     confirmButtonColor: "#3085d6",
-    //     confirmButtonText: "Login",
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       navigate("/", { state: { from: location } });
-    //     }
-    //   });
-    // }
   };
 
   return (

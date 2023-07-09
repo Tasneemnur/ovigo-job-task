@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import Title from "../../shared/Title";
 
 const ManageMembers = () => {
   const { user } = useContext(AuthContext);
@@ -35,8 +36,9 @@ const ManageMembers = () => {
   }
   return (
     <div>
+        <Title heading="Manage Users" subHeading="These are the members who requested to join to your created community."></Title>
       <div className="overflow-x-auto">
-        <table className="table text-center">
+        <table className="table text-center mt-16">
           {/* head */}
           <thead>
             <tr>
