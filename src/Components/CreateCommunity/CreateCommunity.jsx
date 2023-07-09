@@ -2,9 +2,12 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Navbar from "../../shared/Navbar";
+import { useLoaderData } from "react-router-dom";
 
 const CreateCommunity = () => {
   const { user } = useContext(AuthContext);
+  const loadedUsers = useLoaderData();
+  const activeUser = loadedUsers.find(member => member.email === user.email)
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,7 +17,7 @@ const CreateCommunity = () => {
     const adminEmail = form.adminEmail.value;
     
     const community = {
-      communityName, communityPicture, admin, adminEmail
+      communityName, communityPicture, admin, adminEmail, adminId:activeUser._id
     };
     console.log(community);
     fetch(

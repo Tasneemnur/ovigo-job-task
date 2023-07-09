@@ -1,23 +1,29 @@
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+// import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Community = ({ community }) => {
-  const { _id, communityName, communityPicture, admin, adminEmail } = community;
+  const { _id, communityName, communityPicture, admin, adminEmail, adminId } =
+    community;
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+  console.log(user.displayName);
+  //   const navigate = useNavigate();
+  //   const location = useLocation();
   const [click, setClick] = useState(false);
   const handleAddtoCart = (community) => {
-   if(user && user.email){
-    const cart = {
+    setClick(true);
+    if (user && user.email) {
+      const cart = {
         communityId: _id,
         communityName,
         communityPicture,
         admin,
         adminEmail,
+        adminId,
+        memberName: user.displayName,
         email: user.email,
+        status: "pending",
       };
       fetch("http://localhost:5000/carts", {
         method: "POST",
@@ -37,33 +43,38 @@ const Community = ({ community }) => {
               timer: 1500,
             });
           }
-          setClick(true)
         });
-    } else {
-      Swal.fire({
-        title: "You have to login first",
-        icon: "warning",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Login",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/", { state: { from: location } });
-        }
-      });
     }
-   }
-   
+    // else {
+    //   Swal.fire({
+    //     title: "You have to login first",
+    //     icon: "warning",
+    //     confirmButtonColor: "#3085d6",
+    //     confirmButtonText: "Login",
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       navigate("/", { state: { from: location } });
+    //     }
+    //   });
+    // }
+  };
 
   return (
-    <div className="flex w-1/2 mx-auto justify-between px-5 py-5 my-5 rounded-md items-center border shadow-md">
+    <div className="flex justify-between px-5 py-5 rounded-md items-center border shadow-md">
       <div className="flex items-center">
-      <img src={communityPicture} className="w-16 h-16 rounded me-6" alt="" />
-      <div>
-      <p className="text-xl font-bold">{communityName}</p>
-      <p className="text-lg my-1">{admin}</p>
+        <img src={communityPicture} className="w-16 h-16 rounded me-6" alt="" />
+        <div>
+          <p className="text-xl font-bold">{communityName}</p>
+          <p className="text-lg my-1">{admin}</p>
+        </div>
       </div>
-      </div>
-      <button onClick={() => handleAddtoCart(community)} disabled={click} className="btn">Join</button>
+      <button
+        onClick={() => handleAddtoCart(community)}
+        disabled={click}
+        className="btn bg-red-600 text-white"
+      >
+        Join
+      </button>
     </div>
   );
 };

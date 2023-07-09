@@ -8,7 +8,17 @@ import Registration from "./Components/Registration/Registration";
 import AuthProvider from "./Provider/AuthProvider";
 import Home from "./Components/Home/Home";
 import CreateCommunity from "./Components/CreateCommunity/CreateCommunity";
+import PrivateRoute from "./Route/PrivateRoute";
+import Dashboard from "./layout/Dashboard";
+import DashMain from "./Components/Dashboard/DashMain";
+import JoinCommunities from "./Components/Dashboard/JoinCommunities";
+import ManageMembers from "./Components/Dashboard/ManageMembers";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,11 +34,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts",
-        element: <Home></Home>,
+        element: (
+          <PrivateRoute>
+            <Home></Home>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/createCommunity",
-        element: <CreateCommunity></CreateCommunity>,
+        element: (
+          <PrivateRoute>
+            <CreateCommunity></CreateCommunity>
+          </PrivateRoute>
+        ),
+        loader: () => fetch('http://localhost:5000/users')
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashMain></DashMain>,
+      },
+      {
+        path: "/dashboard/joinCommunities",
+        element: <JoinCommunities></JoinCommunities>,
+      },
+      {
+        path: "/dashboard/manageMembers",
+        element: <ManageMembers></ManageMembers>,
+        loader: () => fetch('http://localhost:5000/users')
       },
     ],
   },
@@ -36,6 +78,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider><RouterProvider router={router} /></AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}><RouterProvider router={router} /></QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase_config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -32,15 +33,15 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
-      // if(loggedUser){
-      //   axios.post('https://assignment-12-summer-dance-server.vercel.app/jwt', {email: loggedUser.email})
-      //   .then(data => {
-      //     localStorage.setItem('access-token', data.data)
-      //   })
-      // }
-      // else{
-      //   localStorage.removeItem('access-token')
-      // }
+      if(loggedUser){
+        axios.post('http://localhost:5000/jwt', {email: loggedUser.email})
+        .then(data => {
+          localStorage.setItem('access-token', data.data)
+        })
+      }
+      else{
+        localStorage.removeItem('access-token')
+      }
       setLoading(false);
     });
     return () => {
