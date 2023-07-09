@@ -1,3 +1,4 @@
+import Footer from "../../shared/Footer";
 import Navbar from "../../shared/Navbar";
 import Banner from "./banner";
 import Communities from "./communities";
@@ -13,6 +14,7 @@ const Home = () => {
   <Banner></Banner>
   <Posts></Posts>
   <Communities></Communities>
+  <Footer></Footer>
   </>
   );
 };

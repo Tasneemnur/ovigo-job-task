@@ -12,13 +12,13 @@ const ManageMembers = () => {
   const [myCommunities, setMyCommunities] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/carts?id=${activeUser._id}`)
+    fetch(`https://ovigo-job-task-server.vercel.app/carts?id=${activeUser._id}`)
       .then((res) => res.json())
       .then((data) => setMyCommunities(data));
   }, [activeUser._id]);
 
   const handleApprove = (community) => {
-    fetch(`http://localhost:5000/carts/approved/${community._id}`, {
+    fetch(`https://ovigo-job-task-server.vercel.app/carts/approved/${community._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

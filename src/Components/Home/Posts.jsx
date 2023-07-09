@@ -5,7 +5,7 @@ import Post from "./post";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("https://ovigo-job-task-server.vercel.app/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);

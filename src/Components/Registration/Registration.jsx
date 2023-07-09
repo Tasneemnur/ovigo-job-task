@@ -47,7 +47,7 @@ const Registration = () => {
       })
         .then(() => {
           const registerUser = { name, email, photo, phone }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://ovigo-job-task-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

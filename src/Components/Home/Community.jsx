@@ -22,7 +22,7 @@ const Community = ({ community }) => {
         email: user.email,
         status: "pending",
       };
-      fetch("http://localhost:5000/carts", {
+      fetch("https://ovigo-job-task-server.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

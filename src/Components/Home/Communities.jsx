@@ -5,7 +5,7 @@ import Community from "./Community";
 const Communities = () => {
   const [communities, setCommunities] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/communities")
+    fetch("https://ovigo-job-task-server.vercel.app/communities")
     .then((res) => res.json())
     .then((data) => setCommunities(data));
   }, [])

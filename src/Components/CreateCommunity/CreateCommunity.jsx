@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Navbar from "../../shared/Navbar";
 import { useLoaderData } from "react-router-dom";
+import Footer from "../../shared/Footer";
 
 const CreateCommunity = () => {
   const { user } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const CreateCommunity = () => {
     };
     console.log(community);
     fetch(
-      "http://localhost:5000/communities",
+      "https://ovigo-job-task-server.vercel.app/communities",
       {
         method: "POST",
         headers: {
@@ -114,6 +115,7 @@ const CreateCommunity = () => {
         </div>
       </form>
     </div>
+    <Footer></Footer>
 </div>
     
   );

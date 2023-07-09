@@ -6,7 +6,7 @@ const JoinCommunities = () => {
   const { user } = useContext(AuthContext);
   const [joinCommunities, setJoinCommunities] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/carts?email=${user?.email}`)
+    fetch(`https://ovigo-job-task-server.vercel.app/carts?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setJoinCommunities(data));
   }, [user?.email]);

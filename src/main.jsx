@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             <CreateCommunity></CreateCommunity>
           </PrivateRoute>
         ),
-        loader: () => fetch('http://localhost:5000/users')
+        loader: () => fetch('https://ovigo-job-task-server.vercel.app/users')
       },
     ],
   },
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageMembers",
         element: <ManageMembers></ManageMembers>,
-        loader: () => fetch('http://localhost:5000/users')
+        loader: () => fetch('https://ovigo-job-task-server.vercel.app/users')
       },
     ],
   },
