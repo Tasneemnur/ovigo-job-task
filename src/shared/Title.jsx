@@ -1,5 +1,4 @@
 
-
 const Title = ({heading, subHeading}) => {
     return (
         <div>
