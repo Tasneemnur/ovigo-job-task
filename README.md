@@ -1,0 +1,10 @@
+- This is a traveller community site. Where a traveller can create and add to other communities.
+- If a new traveller register to the site a verification email will send to his given email. You need to check the spam folder too to got that verification email if you register to this site.
+- You have to login first to enter to the website.
+- In the landing page of the website there are all the post of the specific communities. This data is stored from the database. I am using MongoDB as the database of this site.
+- There are also some list of the community which is also coming from backend and the database. Anybody can request to join to this database.
+- There is a Create Community route from where any traveller can create his own community. This community will automatically showed in the home page Communities section.
+- There is a dashboard for loggedin traveller where he can see a route called Join communities. In this page traveller will see all the communities that he requested to join from the home page. He can also see the status of his request like is his request approved or pending.
+- There is another route called Manage Members where traveller will get to see who requested to join his created communities. He can also approve the joining request of the member. This approving the members are also done using backend and MongoDB
+- For the frontend I have used react, tailwind and for the backend I have used node.js, express.js and used MongoDB as database.
+- https://travellers-world.web.app/ 

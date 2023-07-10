@@ -36,7 +36,7 @@ const ManageMembers = () => {
   }
   return (
     <div>
-        <Title heading="Manage Users" subHeading="These are the members who requested to join to your created community."></Title>
+        <Title heading="Manage Users" subHeading="These are the members who requested to join to your created community. If nothing shows that means no one request to join your created community"></Title>
       <div className="overflow-x-auto">
         <table className="table text-center mt-16">
           {/* head */}
